@@ -1,9 +1,20 @@
 import Property from '../model/Property.js';
 
 // Create new property
+// Create new property with images
 export const createProperty = async (req, res) => {
   try {
-    const property = new Property(req.body);
+    const { files } = req;
+    const imageData = files.map(file => ({
+      url: file.path,
+      public_id: file.filename,
+    }));
+
+    const property = new Property({
+      ...req.body,
+      images: imageData,
+    });
+
     await property.save();
     res.status(201).json(property);
   } catch (err) {
