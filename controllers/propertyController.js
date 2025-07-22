@@ -1,4 +1,4 @@
-import Property from '../model/Property.js';
+import Property from '../models/Property.js';
 
 // Create new property
 // Create new property with images
